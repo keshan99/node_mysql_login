@@ -80,13 +80,43 @@ exports.login = async(req, res) => {
 
 
 exports.register = (req, res) => {
-    console.log(req.body);
+    console.log(req.files);
 
     //const name = res.body.name;
     //const email = res.body.email;
     //const password = res.body.password;
     //const passwordConform = res.body.passwordConform;
     const { name, email, password, passwordConform } = req.body;
+    //console.log(req);
+    //Todo: add img part
+    if (!req.files) {
+        return res.render('register', {
+            message: 'No files were uploaded.'
+        })
+    }
+
+    var file = req.files.user_img;
+    var img_name = name + file.name;
+
+    if (file.mimetype == "image/jpeg" || file.mimetype == "image/png" || file.mimetype == "image/gif") {
+        file.mv('../NODE_MYSQL/public/images/upload/' + img_name, function(err) {
+            if (err)
+                return res.status(500).send(err);
+
+            //var sql = "INSERT INTO `users_image`(`first_name`,`last_name`,`mob_no`,`user_name`, `password` ,`image`) VALUES ('" + fname + "','" + lname + "','" + mob + "','" + name + "','" + pass + "','" + img_name + "')";
+
+            //         var query = db.query(sql, function(err, result) {
+            //              res.redirect('profile/'+result.insertId);
+            //         });
+        });
+    } else {
+        return res.render('register', {
+            message: "This format is not allowed , please upload file with '.png','.gif','.jpg'"
+        })
+    }
+
+
+    // TODO: add img part    end
 
     db.query('SELECT email FROM users WHERE email = ?', [email], async(error, result) => {
         if (error) {
@@ -108,14 +138,16 @@ exports.register = (req, res) => {
 
 
 
-        db.query('INSERT INTO users SET ?', { name: name, email: email, password: hashedPassword }, (errror, result) => {
+        db.query('INSERT INTO users SET ?', { name: name, email: email, password: hashedPassword, user_img: img_name }, (errror, result) => {
             if (error) {
                 console.log(error);
             } else {
                 console.log(result);
-                return res.render('register', {
-                    message: 'User registered'
-                });
+                return res.render('login');
+
+                // return res.render('register', {
+                //    message: 'User registered'
+                // });
             }
         })
 

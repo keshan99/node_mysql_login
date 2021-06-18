@@ -3,6 +3,7 @@ const path = require("path");
 const mysql = require("mysql");
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
+const fileUpload = require('express-fileupload');
 
 
 dotenv.config({ path: __dirname + '/.env' });
@@ -26,6 +27,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 
+//image part
+app.use(fileUpload());
 
 
 

@@ -26,7 +26,7 @@
                 Register Form
             </div>
             <div class="card-body">
-                <form action = '/auth/register' method='POST'>
+                <form action = '/auth/register' method='POST' enctype='multipart/form-data'>
                     <div class="form-group">
                         <label for="name ">Name</label>
                         <input type="text" class="form-control" id="name" name="name" >
@@ -35,6 +35,12 @@
                     <div class="form-group ">
                         <label for="email">Email Address</label>
                         <input type="email" class="form-control" id="email" name="email" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="file" class="col-md-3 control-label">Profile Image</label>
+                        <input type="file" class="form-control" id="user_img" name="user_img" accept="image/"/>
+                        
                     </div>
 
                     <div class="form-group">
