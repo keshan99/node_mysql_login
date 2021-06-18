@@ -15,8 +15,8 @@
         <h1>node my sql</h1>
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/auth/logout">Logout</a></li>
         </ul>
     </nav>
 
@@ -28,9 +28,9 @@
                        <img src="/avatar.png" alt="user profile pic" class="avater" />
                    </div>
                     <div class="card-body">
-                        <h5 class="card-body">John Doe</h5>
+                        <h5 class="card-body">{{user.name}}</h5>
                         <p class="card-text">Lorem dipisicing elit. Qui, ex quod, similique temporibus facere aliquam modi praesentium</p>
-                        <a href="#" class="btn btn-primary">john@mail.com</a>
+                        <a href="#" class="btn btn-primary">{{user.email}}</a>
                     </div>
                 </div>
             </div>
@@ -40,10 +40,10 @@
                         Profile page
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Hey jone welcome back</h5>
+                        <h5 class="card-title">Hey {{user.name}} welcome back</h5>
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci quibusdam non, dolorum deleniti illo amet aperiam rerum blanditiis itaque sapiente. Cumque doloremque minima, cupiditate quis fuga iusto ullam ab a.
                         <br><br>
-                        <a href="#" class="btn btn-primary">Go</a>
+                        <a href="#" class="btn btn-primary">Go</a>             
                         <p><br></p>
                         <div class="card-footer text-muted">
                             

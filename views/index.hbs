@@ -13,8 +13,13 @@
         <h1>node my sql</h1>
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
+            {{#if user }}
+                <li><a href="/profile">profile</a></li>
+                <li><a href="/auth/logout">logout</a></li>
+            {{else}}
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+            {{/if}}
         </ul>
     </nav>
 
